@@ -12,6 +12,10 @@ const router = Router();
 router.use("/:postID/comment",commentRouter);
 
 
+// get all active posts
+router.get("/active",isAuthenticated,isAuthorized(endPoints.getAllActivePosts),postService.getAllActivePosts);
+// get all freezed posts
+router.get("/freezed",isAuthenticated,isAuthorized(endPoints.getAllFreezedPosts),postService.getAllFreezedPosts);
 // create post
 router.post("/",isAuthenticated,isAuthorized(endPoints.createPost),uploadCloud().array("images"),validation(postValidation.createPost),postService.createPost);
 // update post
@@ -22,10 +26,6 @@ router.patch("/:id/freeze",isAuthenticated,isAuthorized(endPoints.freezePost),va
 router.patch("/:id/unfreeze",isAuthenticated,isAuthorized(endPoints.unfreezePost),validation(postValidation.unfreezePost),postService.unfreezePost);
 // like unlike post
 router.patch("/:id/like-unlike",isAuthenticated,isAuthorized(endPoints.likeAndUnlikePost),validation(postValidation.likeAndUnlikePost),postService.likeAndUnlikePost);
-// get all active posts
-router.get("/active",isAuthenticated,isAuthorized(endPoints.getAllActivePosts),postService.getAllActivePosts);
-// get all freezed posts
-router.get("/freezed",isAuthenticated,isAuthorized(endPoints.getAllFreezedPosts),postService.getAllFreezedPosts);
 // get single post
 router.get("/:id",isAuthenticated,isAuthorized(endPoints.getPost),validation(postValidation.getPost),postService.getPost);
 
