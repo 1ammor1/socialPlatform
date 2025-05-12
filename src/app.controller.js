@@ -13,6 +13,9 @@ const bootstrap = async (app,express) => {
     app.use(morgan("combined"));
     app.use(express.json());
     app.use("/uploads",express.static("uploads"));
+    app.get("/", (req,res)=>{
+        return res.json({success: true, message: "Welcome to SOCIAL PLATFORM API"});
+    });
     app.use("/auth", authRouter);
     app.use("/user", userRouter);
     app.use("/post", postRouter);
