@@ -5,6 +5,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-bootstrap(app,express);
+const start = async () => {
+  await bootstrap(app, express);
+};
+
+start();
 
 export default app;
