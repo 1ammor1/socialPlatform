@@ -6,6 +6,5 @@ dotenv.config();
 
 const app = express();
 bootstrap(app,express);
-app.listen(3000, () => {
-    console.log(chalk.blue.bgRed("Server is running on port 3000"));
-});
+
+export default app;
